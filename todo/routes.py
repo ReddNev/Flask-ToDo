@@ -36,9 +36,13 @@ def update(todo_id):
     return redirect(url_for('home'))
 
 
-@app.get('/')
-def delete():
-    pass
+@app.get('/delete/<int:todo_id>')
+def delete(todo_id):
+    todo = ToDo.query.filter_by(id=todo_id).first()
+    db.session.delete(todo)
+    db.session.commit()
+    return redirect(url_for('home'))
+
 
 
 
