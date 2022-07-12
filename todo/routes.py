@@ -22,7 +22,7 @@ def home():
 @app.post('/add')
 def add():
     title = request.form.get('title')
-    new_todo = ToDo(title=title, is_complate=False)
+    new_todo = ToDo(title=title, is_complete=False)
     db.session.add(new_todo)
     db.session.commit()
     return redirect(url_for('home'))
