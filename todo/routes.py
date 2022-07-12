@@ -28,10 +28,12 @@ def add():
     return redirect(url_for('home'))
 
 
-
-@app.get('/')
-def update():
-    pass
+@app.get('/update/<int:todo_id>')
+def update(todo_id):
+    todo = ToDo.query.filter_by(id=todo_id).first()
+    todo.is_complete = not todo.is_complete
+    db.session.commit()
+    return redirect(url_for('home'))
 
 
 @app.get('/')
